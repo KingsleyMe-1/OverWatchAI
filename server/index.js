@@ -81,7 +81,7 @@ app.get('/api/proxy/reliefweb/reports', async (req, res) => {
     if (cached) {
       return res.json(cached)
     }
-    const url = 'https://api.reliefweb.int/v1/reports'
+    const url = 'https://api.reliefweb.int/v1/reports?appname=overwatch-ai'
     const response = await fetch(url, {
       method: 'POST',
       headers: {

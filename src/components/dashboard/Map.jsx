@@ -1,5 +1,17 @@
+import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import iconUrl from 'leaflet/dist/images/marker-icon.png'
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet'
+
+// Fix Leaflet default marker icons not resolving in Vite builds
+delete L.Icon.Default.prototype._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconUrl,
+  iconRetinaUrl,
+  shadowUrl,
+})
 
 export default function Map({ location, markers = [], routeCoordinates = [] }) {
   const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY
