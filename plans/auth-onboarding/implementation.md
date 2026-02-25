@@ -1142,7 +1142,7 @@ export default App
 ---
 
 #### Step 4: Add Route Protection and Auth-Aware Navigation
-- [ ] Create `src/components/auth/ProtectedRoute.jsx`:
+- [x] Create `src/components/auth/ProtectedRoute.jsx`:
 
 ```jsx
 import { Navigate, useLocation } from 'react-router-dom'
@@ -1169,7 +1169,7 @@ export default function ProtectedRoute({ children, requireProfile = true }) {
 }
 ```
 
-- [ ] Replace `src/App.jsx` with:
+- [x] Replace `src/App.jsx` with:
 
 ```jsx
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -1252,7 +1252,7 @@ function App() {
 export default App
 ```
 
-- [ ] Replace `src/components/layout/Header.jsx` with:
+- [x] Replace `src/components/layout/Header.jsx` with:
 
 ```jsx
 import { ShieldAlert } from 'lucide-react'
@@ -1306,7 +1306,7 @@ export default function Header() {
 }
 ```
 
-- [ ] Replace `src/components/landing/LandingPage.jsx` with:
+- [x] Replace `src/components/landing/LandingPage.jsx` with:
 
 ```jsx
 import { Link } from 'react-router-dom'
