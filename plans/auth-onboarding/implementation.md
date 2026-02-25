@@ -724,10 +724,10 @@ export default App
 ```
 
 ##### Step 2 Verification Checklist
-- [ ] Visit `/login` and `/signup` — both forms render
-- [ ] Invalid input shows inline validation errors
-- [ ] Successful signup creates user in Supabase Auth
-- [ ] Successful login sets user in `AuthContext`
+- [x] Visit `/login` and `/signup` — both forms render
+- [x] Invalid input shows inline validation errors
+- [x] Successful signup creates user in Supabase Auth
+- [x] Successful login sets user in `AuthContext`
 
 #### Step 2 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.
@@ -735,7 +735,7 @@ export default App
 ---
 
 #### Step 3: Build Personal Information Form (Post-Auth Onboarding)
-- [ ] Create `src/components/onboarding/PersonalInfoForm.jsx`:
+- [x] Create `src/components/onboarding/PersonalInfoForm.jsx`:
 
 ```jsx
 import { useMemo, useState } from 'react'
@@ -1100,7 +1100,7 @@ export default function PersonalInfoForm({ isEdit = false }) {
 }
 ```
 
-- [ ] Replace `src/App.jsx` with:
+- [x] Replace `src/App.jsx` with:
 
 ```jsx
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -1132,9 +1132,9 @@ export default App
 ```
 
 ##### Step 3 Verification Checklist
-- [ ] After signup/login with incomplete profile, user can open `/profile-setup`
-- [ ] Submitting form creates/updates row in Supabase `profiles`
-- [ ] After successful submit, user is redirected to `/setup` (if no location) or `/dashboard`
+- [x] After signup/login with incomplete profile, user can open `/profile-setup`
+- [x] Submitting form creates/updates row in Supabase `profiles`
+- [x] After successful submit, user is redirected to `/setup` (if no location) or `/dashboard`
 
 #### Step 3 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.

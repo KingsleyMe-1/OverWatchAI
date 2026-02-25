@@ -5,6 +5,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import LandingPage from './components/landing/LandingPage'
 import Layout from './components/layout/Layout'
 import LocationInput from './components/onboarding/LocationInput'
+import PersonalInfoForm from './components/onboarding/PersonalInfoForm'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/profile-setup" element={<PersonalInfoForm />} />
         <Route path="/setup" element={<LocationInput />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
