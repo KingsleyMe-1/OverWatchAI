@@ -1082,7 +1082,7 @@ export default App
 ---
 
 #### Step 5: Dashboard & Risk Assessment Panel
-- [ ] Create `src/components/dashboard/AgentStatusBar.jsx`:
+- [x] Create `src/components/dashboard/AgentStatusBar.jsx`:
 
 ```jsx
 const AGENTS = [
@@ -1112,7 +1112,7 @@ export default function AgentStatusBar({ state }) {
 }
 ```
 
-- [ ] Create `src/components/dashboard/RiskPanel.jsx`:
+- [x] Create `src/components/dashboard/RiskPanel.jsx`:
 
 ```jsx
 import Card from '../common/Card'
@@ -1133,7 +1133,7 @@ export default function RiskPanel({ risk }) {
 }
 ```
 
-- [ ] Create `src/components/dashboard/Dashboard.jsx`:
+- [x] Create `src/components/dashboard/Dashboard.jsx`:
 
 ```jsx
 import { useEffect } from 'react'
@@ -1177,9 +1177,9 @@ export default function Dashboard() {
 ```
 
 ##### Step 5 Verification Checklist
-- [ ] Dashboard route redirects to setup when location is missing
-- [ ] Agent status transitions are visible
-- [ ] Risk panel renders Gemini risk output fields
+- [x] Dashboard route redirects to setup when location is missing
+- [x] Agent status transitions are visible
+- [x] Risk panel renders Gemini risk output fields
 
 #### Step 5 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.
@@ -1187,7 +1187,7 @@ export default function Dashboard() {
 ---
 
 #### Step 6: Supplies Planning Panel
-- [ ] Create `src/components/dashboard/SuppliesPanel.jsx`:
+- [x] Create `src/components/dashboard/SuppliesPanel.jsx`:
 
 ```jsx
 import { useEffect, useState } from 'react'
@@ -1269,7 +1269,7 @@ export default function SuppliesPanel({ supplies }) {
 ---
 
 #### Step 7: Evacuation Routing Panel & Interactive Map
-- [ ] Create `src/components/dashboard/Map.jsx`:
+- [x] Create `src/components/dashboard/Map.jsx`:
 
 ```jsx
 import 'leaflet/dist/leaflet.css'
@@ -1292,7 +1292,7 @@ export default function Map({ location, markers = [], routeCoordinates = [] }) {
 }
 ```
 
-- [ ] Create `src/components/dashboard/EvacuationPanel.jsx`:
+- [x] Create `src/components/dashboard/EvacuationPanel.jsx`:
 
 ```jsx
 import { useMemo, useState } from 'react'
@@ -1356,7 +1356,7 @@ export default function EvacuationPanel({ evacuation, location }) {
 ---
 
 #### Step 8: Communication Drafting Panel
-- [ ] Create `src/components/dashboard/CommsPanel.jsx`:
+- [x] Create `src/components/dashboard/CommsPanel.jsx`:
 
 ```jsx
 import { useEffect, useState } from 'react'
@@ -1448,7 +1448,7 @@ export default function CommsPanel({ comms }) {
 ---
 
 #### Step 9: Polish, Responsive Design & Final Integration
-- [ ] Copy and paste code below into `src/index.css`:
+- [x] Copy and paste code below into `src/index.css`:
 
 ```css
 @import "tailwindcss";
@@ -1467,7 +1467,7 @@ body {
 }
 ```
 
-- [ ] Copy and paste code below into `src/App.css`:
+- [x] Copy and paste code below into `src/App.css`:
 
 ```css
 .panel-enter {
@@ -1486,7 +1486,7 @@ body {
 }
 ```
 
-- [ ] Replace `README.md` with project-ready documentation including setup, env vars, and dual-server run commands:
+- [x] Replace `README.md` with project-ready documentation including setup, env vars, and dual-server run commands:
 
 ```markdown
 # Overwatch AI
@@ -1538,7 +1538,7 @@ npm run build
 ```
 ```
 
-- [ ] Execute final integration checks:
+- [x] Execute final integration checks:
 
 ```powershell
 Set-Location "c:\Users\Kingsley\OneDrive\Documents\Web_Projects\OverWatchAI"
