@@ -1812,7 +1812,7 @@ export default function CommsPanel({ comms, contacts = [] }) {
 ---
 
 #### Step 6: Session Persistence, Location Persistence, and Profile Editing
-- [ ] Replace `src/context/AuthContext.jsx` with this final version (adds profile error state and robust refresh path):
+- [x] Replace `src/context/AuthContext.jsx` with this final version (adds profile error state and robust refresh path):
 
 ```jsx
 /* eslint-disable react-refresh/only-export-components */
@@ -2084,7 +2084,7 @@ export function useAuth() {
 }
 ```
 
-- [ ] Replace `src/context/AppContext.jsx` with this final version (location persistence to profile):
+- [x] Replace `src/context/AppContext.jsx` with this final version (location persistence to profile):
 
 ```jsx
 /* eslint-disable react-refresh/only-export-components */
@@ -2170,7 +2170,7 @@ function useAppContext() {
 export { AppProvider, useAppContext }
 ```
 
-- [ ] Create `src/components/onboarding/EditProfilePage.jsx`:
+- [x] Create `src/components/onboarding/EditProfilePage.jsx`:
 
 ```jsx
 import PersonalInfoForm from './PersonalInfoForm'
@@ -2180,7 +2180,7 @@ export default function EditProfilePage() {
 }
 ```
 
-- [ ] Replace `src/components/layout/Header.jsx` with this final version (adds Edit Profile):
+- [x] Replace `src/components/layout/Header.jsx` with this final version (adds Edit Profile):
 
 ```jsx
 import { ShieldAlert } from 'lucide-react'
@@ -2240,7 +2240,7 @@ export default function Header() {
 }
 ```
 
-- [ ] Replace `src/App.jsx` with this final version (adds edit route):
+- [x] Replace `src/App.jsx` with this final version (adds edit route):
 
 ```jsx
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -2334,11 +2334,11 @@ export default App
 ```
 
 ##### Step 6 Verification Checklist
-- [ ] Log in, refresh page, and remain authenticated
-- [ ] Set location, refresh, and location persists from Supabase profile
-- [ ] Logout and log back in — profile and location remain intact
-- [ ] Simulate offline/auth failures and verify user-friendly auth/profile errors appear
-- [ ] `Edit Profile` route updates profile data successfully
+- [x] Log in, refresh page, and remain authenticated
+- [x] Set location, refresh, and location persists from Supabase profile
+- [x] Logout and log back in — profile and location remain intact
+- [x] Simulate offline/auth failures and verify user-friendly auth/profile errors appear
+- [x] `Edit Profile` route updates profile data successfully
 
 #### Step 6 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.

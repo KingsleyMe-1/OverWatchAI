@@ -24,10 +24,16 @@ export default function Header() {
         </Link>
 
         {user ? (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <span className="text-sm text-slate-600">
               Hello, {profile?.full_name || user.email}
             </span>
+            <Link
+              to="/profile/edit"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+            >
+              Edit Profile
+            </Link>
             <button
               onClick={onLogout}
               className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"

@@ -107,6 +107,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [profileError, setProfileError] = useState('')
 
   async function loadProfile(userId) {
     const { data, error } = await supabase
@@ -116,11 +117,12 @@ export function AuthProvider({ children }) {
       .maybeSingle()
 
     if (error) {
-      console.error('[Auth] loadProfile failed:', error.message)
+      setProfileError(error.message)
       throw error
     }
 
     const merged = mergeWithDefaults(data)
+    setProfileError('')
     setProfile(merged)
     return merged
   }
@@ -159,11 +161,12 @@ export function AuthProvider({ children }) {
       .single()
 
     if (error) {
-      console.error('[Auth] saveProfile failed:', error.message)
+      setProfileError(error.message)
       throw error
     }
 
     const nextProfile = mergeWithDefaults(data)
+    setProfileError('')
     setProfile(nextProfile)
     return nextProfile
   }
@@ -243,6 +246,7 @@ export function AuthProvider({ children }) {
       user,
       profile,
       loading,
+      profileError,
       profileComplete,
       signUp,
       signIn,
@@ -250,7 +254,7 @@ export function AuthProvider({ children }) {
       saveProfile,
       refreshProfile,
     }),
-    [user, profile, loading, profileComplete],
+    [user, profile, loading, profileError, profileComplete],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

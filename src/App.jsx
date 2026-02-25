@@ -5,6 +5,7 @@ import SignupPage from './components/auth/SignupPage'
 import Dashboard from './components/dashboard/Dashboard'
 import LandingPage from './components/landing/LandingPage'
 import Layout from './components/layout/Layout'
+import EditProfilePage from './components/onboarding/EditProfilePage'
 import LocationInput from './components/onboarding/LocationInput'
 import PersonalInfoForm from './components/onboarding/PersonalInfoForm'
 import { useAuth } from './context/AuthContext'
@@ -47,6 +48,15 @@ function App() {
           element={
             <ProtectedRoute requireProfile={false}>
               <PersonalInfoForm />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile/edit"
+          element={
+            <ProtectedRoute>
+              <EditProfilePage />
             </ProtectedRoute>
           }
         />
