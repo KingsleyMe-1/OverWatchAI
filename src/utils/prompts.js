@@ -17,7 +17,11 @@ export function evacuationPrompt(input) {
 }
 
 export function commsPrompt(input) {
-  return `Generate bilingual Filipino/English emergency communication drafts from: ${JSON.stringify(
-    input,
-  )}. Return JSON: {"sms":"","barangayNotice":"","socialPost":"","meetingPlan":""}`
+  const locationName = input.location?.name || 'the area'
+  const evac = input.riskData?.topFacilities?.[0] || input.riskData?.recommendations?.[0] || ''
+  return `Generate bilingual Filipino/English emergency communication drafts for someone located in "${locationName}", Philippines.
+Use the ACTUAL location name "${locationName}" in every message — never leave placeholder brackets like [location].
+Incorporate specific evacuation points or meeting places from the risk data when available: ${JSON.stringify(evac)}.
+Risk context: ${JSON.stringify(input.riskData)}.
+Return JSON: {"sms":"<SMS in Filipino using real location name and nearest evacuation point>","barangayNotice":"<formal report in Filipino>","socialPost":"<English safety check-in post>","meetingPlan":"<specific meeting plan with real landmarks>"}`
 }

@@ -16,8 +16,11 @@ export default function AgentStatusBar({ state }) {
   return (
     <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
       {AGENTS.map(([key, label]) => (
-        <div key={key} className={`rounded-lg px-3 py-2 text-sm font-medium ${color(state[key].status)}`}>
+        <div key={key} className={`rounded-lg px-3 py-2 text-sm font-medium ${color(state[key].status)}`} title={state[key].error || ''}>
           {label}: {state[key].status}
+          {state[key].error && (
+            <p className="mt-1 text-xs font-normal opacity-80 truncate">{state[key].error}</p>
+          )}
         </div>
       ))}
     </div>

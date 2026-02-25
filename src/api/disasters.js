@@ -24,15 +24,13 @@ export async function getEonetEvents() {
 }
 
 export async function getGdacsRss() {
-  const response = await fetch('https://www.gdacs.org/xml/rss.xml')
+  const response = await fetch('/api/proxy/gdacs/rss')
   if (!response.ok) throw new Error('GDACS request failed')
   return response.text()
 }
 
 export async function getReliefwebReports() {
-  const url =
-    'https://api.reliefweb.int/v2/reports?appname=overwatch-ai&filter[field]=country.name&filter[value]=Philippines&sort[]=date:desc&limit=10'
-  const response = await fetch(url)
+  const response = await fetch('/api/proxy/reliefweb/reports')
   if (!response.ok) throw new Error('ReliefWeb request failed')
   return response.json()
 }

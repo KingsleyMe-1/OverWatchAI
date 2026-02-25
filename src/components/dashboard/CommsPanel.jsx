@@ -23,7 +23,7 @@ export default function CommsPanel({ comms }) {
     navigator.clipboard.writeText(text || '')
   }
 
-  const sms = comms?.sms || 'Nasa [location] ako. Ligtas ako. Pupunta ako sa [evacuation point].'
+  const sms = comms?.sms || 'Nasa aming lugar ako. Ligtas ako. Pupunta ako sa pinakamalapit na evacuation center.'
   const barangayNotice = comms?.barangayNotice || 'Mag-uulat po ako ng kasalukuyang sitwasyon sa aming lugar.'
   const socialPost = comms?.socialPost || 'I am safe. Please monitor official advisories and keep emergency lines open.'
   const meetingPlan = comms?.meetingPlan || 'Primary meet-up point: barangay hall. Backup: nearest school.'

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../context/AppContext'
 import { useAgents } from '../../hooks/useAgents'
@@ -13,14 +13,18 @@ export default function Dashboard() {
   const navigate = useNavigate()
   const { location, agentState } = useAppContext()
   const { runAllAgents } = useAgents()
+  const hasRun = useRef(false)
 
   useEffect(() => {
     if (!location) {
       navigate('/setup')
       return
     }
+    if (hasRun.current) return
+    hasRun.current = true
     runAllAgents()
-  }, [location, navigate, runAllAgents])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location])
 
   if (!location) return <LoadingSpinner label="Preparing dashboard..." />
 

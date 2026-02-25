@@ -52,6 +52,62 @@ app.get('/api/scrape/pagasa/flood', (req, res) =>
   serveWithCache('pagasa-flood', res, scrapePagasaFlood),
 )
 
+// Proxy for GDACS RSS (avoids browser CORS issues)
+app.get('/api/proxy/gdacs/rss', async (req, res) => {
+  try {
+    const cached = getCached('gdacs-rss')
+    if (cached) {
+      res.set('Content-Type', 'application/xml')
+      return res.send(cached)
+    }
+    const response = await fetch('https://www.gdacs.org/xml/rss.xml')
+    if (!response.ok) throw new Error(`GDACS returned ${response.status}`)
+    const text = await response.text()
+    setCached('gdacs-rss', text)
+    res.set('Content-Type', 'application/xml')
+    return res.send(text)
+  } catch (error) {
+    return res.status(502).json({ ok: false, error: error.message })
+  }
+})
+
+// Proxy for ReliefWeb API (uses POST method which is more reliable)
+app.get('/api/proxy/reliefweb/reports', async (req, res) => {
+  try {
+    const cached = getCached('reliefweb-reports')
+    if (cached) {
+      return res.json(cached)
+    }
+    const url = 'https://api.reliefweb.int/v1/reports'
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'OverwatchAI/1.0 (disaster-monitoring; https://github.com/overwatch-ai)',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        appname: 'overwatch-ai',
+        filter: {
+          field: 'country.name',
+          value: ['Philippines'],
+        },
+        sort: ['date:desc'],
+        limit: 10,
+        fields: {
+          include: ['title', 'date.created', 'url', 'source', 'country', 'disaster_type'],
+        },
+      }),
+    })
+    if (!response.ok) throw new Error(`ReliefWeb returned ${response.status}`)
+    const data = await response.json()
+    setCached('reliefweb-reports', data)
+    return res.json(data)
+  } catch (error) {
+    return res.status(502).json({ ok: false, error: error.message })
+  }
+})
+
 app.listen(port, () => {
   console.log(`Scraper backend running on http://localhost:${port}`)
 })
