@@ -871,7 +871,7 @@ export function useAgents() {
 ---
 
 #### Step 4: Landing Page & Location Onboarding
-- [ ] Copy and paste code below into `src/main.jsx`:
+- [x] Copy and paste code below into `src/main.jsx`:
 
 ```jsx
 import { StrictMode } from 'react'
@@ -892,7 +892,7 @@ createRoot(document.getElementById('root')).render(
 )
 ```
 
-- [ ] Create `src/components/common/Card.jsx`:
+- [x] Create `src/components/common/Card.jsx`:
 
 ```jsx
 export default function Card({ title, children, className = '' }) {
@@ -905,7 +905,7 @@ export default function Card({ title, children, className = '' }) {
 }
 ```
 
-- [ ] Create `src/components/common/LoadingSpinner.jsx`:
+- [x] Create `src/components/common/LoadingSpinner.jsx`:
 
 ```jsx
 export default function LoadingSpinner({ label = 'Loading...' }) {
@@ -918,7 +918,7 @@ export default function LoadingSpinner({ label = 'Loading...' }) {
 }
 ```
 
-- [ ] Create `src/components/layout/Header.jsx`:
+- [x] Create `src/components/layout/Header.jsx`:
 
 ```jsx
 import { ShieldAlert } from 'lucide-react'
@@ -935,7 +935,7 @@ export default function Header() {
 }
 ```
 
-- [ ] Create `src/components/layout/Layout.jsx`:
+- [x] Create `src/components/layout/Layout.jsx`:
 
 ```jsx
 import Header from './Header'
@@ -950,7 +950,7 @@ export default function Layout({ children }) {
 }
 ```
 
-- [ ] Create `src/components/landing/LandingPage.jsx`:
+- [x] Create `src/components/landing/LandingPage.jsx`:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -971,7 +971,7 @@ export default function LandingPage() {
 }
 ```
 
-- [ ] Create `src/components/onboarding/LocationInput.jsx`:
+- [x] Create `src/components/onboarding/LocationInput.jsx`:
 
 ```jsx
 import { useEffect, useState } from 'react'
@@ -1046,7 +1046,7 @@ export default function LocationInput() {
 }
 ```
 
-- [ ] Copy and paste code below into `src/App.jsx`:
+- [x] Copy and paste code below into `src/App.jsx`:
 
 ```jsx
 import { Navigate, Route, Routes } from 'react-router-dom'
