@@ -102,11 +102,16 @@ app.get('/api/proxy/reliefweb/reports', async (req, res) => {
         },
       }),
     })
-    if (!response.ok) throw new Error(`ReliefWeb returned ${response.status}`)
+    if (!response.ok) {
+      const body = await response.text().catch(() => '')
+      console.error(`[ReliefWeb] ${response.status} ${response.statusText}: ${body}`)
+      throw new Error(`ReliefWeb returned ${response.status}`)
+    }
     const data = await response.json()
     setCached('reliefweb-reports', data)
     return res.json(data)
   } catch (error) {
+    console.error('[ReliefWeb proxy error]', error.message)
     return res.status(502).json({ ok: false, error: error.message })
   }
 })
