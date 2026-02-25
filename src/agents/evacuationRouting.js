@@ -4,7 +4,7 @@ import { evacuationPrompt } from '../utils/prompts'
 
 const CATEGORIES = ['healthcare.hospital', 'education.school', 'service.fire_station', 'service.police']
 
-export async function runEvacuationRouting(location, riskData) {
+export async function runEvacuationRouting(location, riskData, profile) {
   const facilities = await findNearbyFacilities(location.lat, location.lon, CATEGORIES, 5000)
 
   const top = (facilities.features || []).slice(0, 5)
@@ -21,7 +21,17 @@ export async function runEvacuationRouting(location, riskData) {
   )
 
   const recommendations = await generateJson(
-    evacuationPrompt({ location, riskData, facilities: top }),
+    evacuationPrompt({
+      location,
+      riskData,
+      facilities: top,
+      profile: {
+        household: profile?.household || {},
+        vehicleType: profile?.vehicle_type || 'none',
+        medicalNotes: profile?.medical_notes || '',
+        pets: profile?.pets || [],
+      },
+    }),
     'evacuation recommendations schema',
   )
 

@@ -5,7 +5,24 @@ import { getPhivolcsEarthquakes, getPhivolcsVolcanoes } from '../api/phivolcs'
 import { getWeatherForecast } from '../api/weather'
 import { riskPrompt } from '../utils/prompts'
 
-export async function runRiskAssessment(location) {
+function normalizeProfile(profile) {
+  if (!profile) return null
+  return {
+    fullName: profile.full_name || '',
+    household: profile.household || {},
+    medicalNotes: profile.medical_notes || '',
+    pets: profile.pets || [],
+    vehicleType: profile.vehicle_type || 'none',
+    work: {
+      location: profile.work_location || '',
+      hours: profile.work_hours || '',
+      dayOff: profile.work_day_off || '',
+    },
+    emergencyContacts: profile.emergency_contacts || [],
+  }
+}
+
+export async function runRiskAssessment(location, profile) {
   const results = await Promise.allSettled([
     getWeatherForecast(location.lat, location.lon),
     getUsgsEarthquakes(),
@@ -42,6 +59,7 @@ export async function runRiskAssessment(location) {
 
   const input = {
     locationName: location.name,
+    profile: normalizeProfile(profile),
     weather: weather
       ? {
           daily: weather.daily,

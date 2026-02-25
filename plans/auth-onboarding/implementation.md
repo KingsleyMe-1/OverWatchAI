@@ -1349,7 +1349,7 @@ export default function LandingPage() {
 ---
 
 #### Step 5: Integrate Personal Info into AI Agents and Remove Legacy Contacts Storage
-- [ ] Replace `src/context/AppContext.jsx` with:
+- [x] Replace `src/context/AppContext.jsx` with:
 
 ```jsx
 /* eslint-disable react-refresh/only-export-components */
@@ -1383,7 +1383,7 @@ function useAppContext() {
 export { AppProvider, useAppContext }
 ```
 
-- [ ] Replace `src/hooks/useAgents.js` with:
+- [x] Replace `src/hooks/useAgents.js` with:
 
 ```javascript
 import { useCallback } from 'react'
@@ -1408,7 +1408,7 @@ export function useAgents() {
 }
 ```
 
-- [ ] Replace `src/agents/orchestrator.js` with:
+- [x] Replace `src/agents/orchestrator.js` with:
 
 ```javascript
 import { runCommunicationDraft } from './communicationDraft'
@@ -1470,7 +1470,7 @@ export async function runAllAgents(location, profile, setAgentState) {
 }
 ```
 
-- [ ] Replace `src/agents/riskAssessment.js` with:
+- [x] Replace `src/agents/riskAssessment.js` with:
 
 ```javascript
 import { getEonetEvents, getGdacsRss, getReliefwebReports, getUsgsEarthquakes } from '../api/disasters'
@@ -1550,7 +1550,7 @@ export async function runRiskAssessment(location, profile) {
 }
 ```
 
-- [ ] Replace `src/agents/suppliesPlanning.js` with:
+- [x] Replace `src/agents/suppliesPlanning.js` with:
 
 ```javascript
 import { generateJson } from '../api/gemini'
@@ -1572,7 +1572,7 @@ export async function runSuppliesPlanning(riskData, profile) {
 }
 ```
 
-- [ ] Replace `src/agents/evacuationRouting.js` with:
+- [x] Replace `src/agents/evacuationRouting.js` with:
 
 ```javascript
 import { findNearbyFacilities, getRoute } from '../api/geoapify'
@@ -1616,7 +1616,7 @@ export async function runEvacuationRouting(location, riskData, profile) {
 }
 ```
 
-- [ ] Replace `src/agents/communicationDraft.js` with:
+- [x] Replace `src/agents/communicationDraft.js` with:
 
 ```javascript
 import { generateJson } from '../api/gemini'
@@ -1637,7 +1637,7 @@ export async function runCommunicationDraft(location, riskData, profile) {
 }
 ```
 
-- [ ] Replace `src/utils/prompts.js` with:
+- [x] Replace `src/utils/prompts.js` with:
 
 ```javascript
 function profileContext(profile) {
@@ -1681,7 +1681,7 @@ Return JSON: {"sms":"","barangayNotice":"","socialPost":"","meetingPlan":""}`
 }
 ```
 
-- [ ] Replace `src/components/dashboard/Dashboard.jsx` with:
+- [x] Replace `src/components/dashboard/Dashboard.jsx` with:
 
 ```jsx
 import { useEffect, useRef } from 'react'
@@ -1730,7 +1730,7 @@ export default function Dashboard() {
 }
 ```
 
-- [ ] Replace `src/components/dashboard/CommsPanel.jsx` with:
+- [x] Replace `src/components/dashboard/CommsPanel.jsx` with:
 
 ```jsx
 import Card from '../common/Card'
@@ -1801,10 +1801,10 @@ export default function CommsPanel({ comms, contacts = [] }) {
 ```
 
 ##### Step 5 Verification Checklist
-- [ ] Running agents with profile data changes outputs (household, pets, vehicle, work exposure)
-- [ ] Supplies output includes pet and household scaling when applicable
-- [ ] Evacuation recommendations account for no vehicle / mobility notes
-- [ ] Comms panel shows emergency contacts from profile (not localStorage)
+- [x] Running agents with profile data changes outputs (household, pets, vehicle, work exposure)
+- [x] Supplies output includes pet and household scaling when applicable
+- [x] Evacuation recommendations account for no vehicle / mobility notes
+- [x] Comms panel shows emergency contacts from profile (not localStorage)
 
 #### Step 5 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.

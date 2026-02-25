@@ -20,11 +20,12 @@ async function runAgent(key, fn, setAgentState) {
   }
 }
 
-export async function runAllAgents(location, setAgentState) {
+export async function runAllAgents(location, profile, setAgentState) {
   if (_running) {
     console.warn('[Orchestrator] Already running, skipping duplicate call')
     return
   }
+
   _running = true
   try {
     setAgentState((prev) => ({
@@ -35,8 +36,7 @@ export async function runAllAgents(location, setAgentState) {
       comms: { status: 'idle', data: null, error: null },
     }))
 
-    // Step 1 — Risk assessment must run first
-    const risk = await runAgent('risk', () => runRiskAssessment(location), setAgentState)
+    const risk = await runAgent('risk', () => runRiskAssessment(location, profile), setAgentState)
 
     if (!risk) {
       const depError = 'Risk assessment failed — cannot proceed'
@@ -49,10 +49,9 @@ export async function runAllAgents(location, setAgentState) {
       return
     }
 
-    // Step 2 — Run remaining agents sequentially to avoid rate limits
-    await runAgent('supplies', () => runSuppliesPlanning(risk), setAgentState)
-    await runAgent('evacuation', () => runEvacuationRouting(location, risk), setAgentState)
-    await runAgent('comms', () => runCommunicationDraft(location, risk), setAgentState)
+    await runAgent('supplies', () => runSuppliesPlanning(risk, profile), setAgentState)
+    await runAgent('evacuation', () => runEvacuationRouting(location, risk, profile), setAgentState)
+    await runAgent('comms', () => runCommunicationDraft(location, risk, profile), setAgentState)
   } finally {
     _running = false
   }

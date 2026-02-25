@@ -1,27 +1,39 @@
+function profileContext(profile) {
+  if (!profile) return 'No profile data provided.'
+  return JSON.stringify(profile)
+}
+
 export function riskPrompt(input) {
-  return `Analyze disaster risk for ${input.locationName} in the Philippines. Data: ${JSON.stringify(
-    input,
-  )}. Return JSON: {"riskLevel":"low|moderate|high|extreme","activeThreats":[],"summary":""}`
+  return `Analyze disaster risk for ${input.locationName} in the Philippines.
+Personal profile context: ${profileContext(input.profile)}.
+Risk data: ${JSON.stringify(input)}.
+Prioritize medical conditions, mobility constraints, household composition, and work exposure timing.
+Return JSON: {"riskLevel":"low|moderate|high|extreme","activeThreats":[],"summary":""}`
 }
 
 export function suppliesPrompt(input) {
-  return `Generate a Philippines-focused emergency supply checklist based on: ${JSON.stringify(
-    input,
-  )}. Return JSON: {"categories":[{"name":"","items":[{"name":"","quantity":"","reason":""}]}]}`
+  return `Generate a Philippines-focused emergency supply checklist.
+Risk context: ${JSON.stringify(input.riskData)}.
+Personal profile context: ${profileContext(input.profile)}.
+Scale quantities based on household composition, include pet supplies, and include medically necessary items.
+Return JSON: {"categories":[{"name":"","items":[{"name":"","quantity":"","reason":""}]}]}`
 }
 
 export function evacuationPrompt(input) {
-  return `Recommend evacuation priorities from facilities data: ${JSON.stringify(
-    input,
-  )}. Return JSON: {"recommendations":[],"topFacilities":[]}`
+  return `Recommend evacuation priorities and routing.
+Location and facilities: ${JSON.stringify({ location: input.location, facilities: input.facilities })}.
+Risk context: ${JSON.stringify(input.riskData)}.
+Personal profile context: ${profileContext(input.profile)}.
+Account for vehicle availability and mobility limitations.
+Return JSON: {"recommendations":[],"topFacilities":[]}`
 }
 
 export function commsPrompt(input) {
   const locationName = input.location?.name || 'the area'
-  const evac = input.riskData?.topFacilities?.[0] || input.riskData?.recommendations?.[0] || ''
   return `Generate bilingual Filipino/English emergency communication drafts for someone located in "${locationName}", Philippines.
-Use the ACTUAL location name "${locationName}" in every message — never leave placeholder brackets like [location].
-Incorporate specific evacuation points or meeting places from the risk data when available: ${JSON.stringify(evac)}.
+Use the real location name "${locationName}" in every output.
 Risk context: ${JSON.stringify(input.riskData)}.
-Return JSON: {"sms":"<SMS in Filipino using real location name and nearest evacuation point>","barangayNotice":"<formal report in Filipino>","socialPost":"<English safety check-in post>","meetingPlan":"<specific meeting plan with real landmarks>"}`
+Personal profile context: ${profileContext(input.profile)}.
+Use the person's name and emergency contact context in tone and guidance.
+Return JSON: {"sms":"","barangayNotice":"","socialPost":"","meetingPlan":""}`
 }
