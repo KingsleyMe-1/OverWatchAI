@@ -432,7 +432,7 @@ with check (auth.uid() = id);
 ---
 
 #### Step 2: Build Login and Signup Pages
-- [ ] Create `src/components/auth/LoginPage.jsx`:
+- [x] Create `src/components/auth/LoginPage.jsx`:
 
 ```jsx
 import { useMemo, useState } from 'react'
@@ -545,7 +545,7 @@ export default function LoginPage() {
 }
 ```
 
-- [ ] Create `src/components/auth/SignupPage.jsx`:
+- [x] Create `src/components/auth/SignupPage.jsx`:
 
 ```jsx
 import { useState } from 'react'
@@ -694,7 +694,7 @@ export default function SignupPage() {
 }
 ```
 
-- [ ] Replace `src/App.jsx` with:
+- [x] Replace `src/App.jsx` with:
 
 ```jsx
 import { Navigate, Route, Routes } from 'react-router-dom'
