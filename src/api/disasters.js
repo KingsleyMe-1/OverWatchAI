@@ -23,14 +23,16 @@ export async function getEonetEvents() {
   return response.json()
 }
 
+const SCRAPER_URL = import.meta.env.VITE_SCRAPER_URL || ''
+
 export async function getGdacsRss() {
-  const response = await fetch('/api/proxy/gdacs/rss')
+  const response = await fetch(`${SCRAPER_URL}/api/proxy/gdacs/rss`)
   if (!response.ok) throw new Error('GDACS request failed')
   return response.text()
 }
 
 export async function getReliefwebReports() {
-  const response = await fetch('/api/proxy/reliefweb/reports')
+  const response = await fetch(`${SCRAPER_URL}/api/proxy/reliefweb/reports`)
   if (!response.ok) throw new Error('ReliefWeb request failed')
   return response.json()
 }

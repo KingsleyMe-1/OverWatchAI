@@ -7,11 +7,14 @@ import { scrapePhivolcsEarthquakes } from './scrapers/phivolcsEarthquakes.js'
 import { scrapePhivolcsVolcanoes } from './scrapers/phivolcsVolcanoes.js'
 
 const app = express()
-const port = 3001
+const port = process.env.PORT || 3001
 
 app.use(
   cors({
-    origin: ['http://localhost:5173'],
+    origin: [
+      'http://localhost:5173',
+      /\.vercel\.app$/,
+    ],
   }),
 )
 
