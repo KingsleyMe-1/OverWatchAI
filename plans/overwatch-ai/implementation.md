@@ -663,7 +663,7 @@ export async function getPagasaFlood() {
 ---
 
 #### Step 3: Agent Framework & Prompt Engineering
-- [ ] Create `src/utils/prompts.js`:
+- [x] Create `src/utils/prompts.js`:
 
 ```js
 export function riskPrompt(input) {
@@ -691,7 +691,7 @@ export function commsPrompt(input) {
 }
 ```
 
-- [ ] Create `src/agents/riskAssessment.js`:
+- [x] Create `src/agents/riskAssessment.js`:
 
 ```js
 import { getEonetEvents, getGdacsRss, getReliefwebReports, getUsgsEarthquakes } from '../api/disasters'
@@ -732,7 +732,7 @@ export async function runRiskAssessment(location) {
 }
 ```
 
-- [ ] Create `src/agents/suppliesPlanning.js`:
+- [x] Create `src/agents/suppliesPlanning.js`:
 
 ```js
 import { generateJson } from '../api/gemini'
@@ -743,7 +743,7 @@ export async function runSuppliesPlanning(riskData) {
 }
 ```
 
-- [ ] Create `src/agents/evacuationRouting.js`:
+- [x] Create `src/agents/evacuationRouting.js`:
 
 ```js
 import { findNearbyFacilities, getRoute } from '../api/geoapify'
@@ -777,7 +777,7 @@ export async function runEvacuationRouting(location, riskData) {
 }
 ```
 
-- [ ] Create `src/agents/communicationDraft.js`:
+- [x] Create `src/agents/communicationDraft.js`:
 
 ```js
 import { generateJson } from '../api/gemini'
@@ -788,7 +788,7 @@ export async function runCommunicationDraft(location, riskData) {
 }
 ```
 
-- [ ] Create `src/agents/orchestrator.js`:
+- [x] Create `src/agents/orchestrator.js`:
 
 ```js
 import { runCommunicationDraft } from './communicationDraft'
@@ -837,7 +837,7 @@ export async function runAllAgents(location, setAgentState) {
 }
 ```
 
-- [ ] Create `src/hooks/useAgents.js`:
+- [x] Create `src/hooks/useAgents.js`:
 
 ```js
 import { useCallback } from 'react'
@@ -861,9 +861,9 @@ export function useAgents() {
 ```
 
 ##### Step 3 Verification Checklist
-- [ ] Running `runAllAgents` updates statuses in order: `risk` then parallel agents
-- [ ] Risk output includes weather + USGS + PAGASA + PHIVOLCS inputs
-- [ ] Supplies/Evacuation/Comms receive risk output as input
+- [x] Running `runAllAgents` updates statuses in order: `risk` then parallel agents
+- [x] Risk output includes weather + USGS + PAGASA + PHIVOLCS inputs
+- [x] Supplies/Evacuation/Comms receive risk output as input
 
 #### Step 3 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.
