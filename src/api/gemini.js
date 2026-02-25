@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.GITHUB_TOKEN
+const API_KEY = import.meta.env.VITE_GITHUB_TOKEN
 const MODEL = 'gpt-4o-mini'
 const MAX_RETRIES = 5
 const INITIAL_DELAY_MS = 3000

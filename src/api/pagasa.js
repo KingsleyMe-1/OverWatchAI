@@ -1,4 +1,4 @@
-const SCRAPER_URL = import.meta.env.SCRAPER_URL || ''
+const SCRAPER_URL = import.meta.env.VITE_SCRAPER_URL || ''
 
 export async function getPagasaWeather() {
   const response = await fetch(`${SCRAPER_URL}/api/scrape/pagasa/weather`)
