@@ -23,7 +23,7 @@ export async function getEonetEvents() {
   return response.json()
 }
 
-const SCRAPER_URL = import.meta.env.VITE_SCRAPER_URL || ''
+const SCRAPER_URL = import.meta.env.SCRAPER_URL || ''
 
 export async function getGdacsRss() {
   const response = await fetch(`${SCRAPER_URL}/api/proxy/gdacs/rss`)

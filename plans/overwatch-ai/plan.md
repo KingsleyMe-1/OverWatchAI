@@ -159,7 +159,7 @@ GET https://api.geoapify.com/v2/places
   ?categories=healthcare.hospital,education.school
   &filter=circle:{lon},{lat},{radiusMeters}
   &limit=20
-  &apiKey={VITE_GEOAPIFY_API_KEY}
+  &apiKey={GEOAPIFY_API_KEY}
 ```
 
 ## Folder Structure
@@ -227,10 +227,10 @@ src/
 
 ### Step 1: Project Foundation & Core Infrastructure
 **Files:** `package.json`, `.env.example`, `.gitignore`, `vite.config.js`, `src/api/gemini.js`, `src/api/weather.js`, `src/api/disasters.js`, `src/api/geoapify.js`, `src/utils/constants.js`, `src/context/AppContext.jsx`
-**What:** Install all frontend dependencies (`react-router-dom`, `react-leaflet`, `leaflet`, `lucide-react`). Create `.env.example` with `VITE_GEMINI_API_KEY`, `VITE_GEOAPIFY_API_KEY`, and `VITE_SCRAPER_URL=http://localhost:3001` placeholders. Update `vite.config.js` to add a dev proxy: `/api/scrape` → `http://localhost:3001`. Build all API client modules:
+**What:** Install all frontend dependencies (`react-router-dom`, `react-leaflet`, `leaflet`, `lucide-react`). Create `.env.example` with `VITE_GEMINI_API_KEY`, `GEOAPIFY_API_KEY`, and `SCRAPER_URL=http://localhost:3001` placeholders. Update `vite.config.js` to add a dev proxy: `/api/scrape` → `http://localhost:3001`. Build all API client modules:
 - `weather.js` — Open-Meteo forecast + weather codes for Philippine coordinates
 - `disasters.js` — USGS earthquakes (PH bounding box: 4.5–21°N, 116–127°E), NASA EONET events, GDACS alerts, ReliefWeb PH disaster reports
-- `geoapify.js` — **Single module replacing the original `geocoding.js`, `routing.js`, and `facilities.js`**. Uses `VITE_GEOAPIFY_API_KEY` (called directly from browser). Functions:
+- `geoapify.js` — **Single module replacing the original `geocoding.js`, `routing.js`, and `facilities.js`**. Uses `GEOAPIFY_API_KEY` (called directly from browser). Functions:
   - `geocodeSearch(text)` — `GET https://api.geoapify.com/v1/geocode/search?text=...&filter=countrycode:ph`
   - `geocodeAutocomplete(text)` — `GET https://api.geoapify.com/v1/geocode/autocomplete?text=...&filter=countrycode:ph`
   - `reverseGeocode(lat, lon)` — `GET https://api.geoapify.com/v1/geocode/reverse?lat=...&lon=...`
@@ -279,7 +279,7 @@ Create the global `AppContext` for state management (user location, disaster typ
 **Caching:** Each Express route checks the TTL cache before invoking Playwright. Cache hit returns stored JSON instantly. Cache miss launches the scraper, stores results for 15 min, then returns JSON.
 **CORS:** Express middleware returns `Access-Control-Allow-Origin` for the Vite dev origin.
 
-On the frontend, build `src/api/pagasa.js` and `src/api/phivolcs.js` as API clients that call the scraper URL (configured via `VITE_SCRAPER_URL` env var, proxied through `vite.config.js` in dev).
+On the frontend, build `src/api/pagasa.js` and `src/api/phivolcs.js` as API clients that call the scraper URL (configured via `SCRAPER_URL` env var, proxied through `vite.config.js` in dev).
 
 **Testing:** Run `cd server && npm install && npx playwright install chromium && npm run dev`. Call `http://localhost:3001/api/scrape/phivolcs/earthquakes` from the browser — verify JSON array of PH earthquakes with real data. Start Vite frontend and confirm `src/api/phivolcs.js` fetches through the dev proxy.
 
@@ -311,7 +311,7 @@ Build the orchestrator: risk assessment runs first (fetching from all APIs + scr
 
 ### Step 7: Evacuation Routing Panel & Interactive Map
 **Files:** `src/components/dashboard/EvacuationPanel.jsx`, `src/components/dashboard/Map.jsx`
-**What:** Build the `Map` component using `react-leaflet` with **Geoapify Map Tiles** (`https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey={VITE_GEOAPIFY_API_KEY}`), centered on the user's PH location. Query **Geoapify Places API** for nearby government facilities (hospitals: `healthcare.hospital`, schools: `education.school`, fire stations: `service.fire_station`, police stations: `service.police`) within a configurable radius (default 5km). Display facilities as categorized markers with custom icons. For each facility, calculate a route via **Geoapify Routing API** (driving + walking). Build `EvacuationPanel` with: (1) facility list grouped by type, showing name, distance, and estimated travel time, (2) disaster-aware recommendations from Gemini (e.g., "For typhoon: evacuate to nearest school" vs "For earthquake: go to open park"), (3) clicking a facility shows its route on the map as a polyline.
+**What:** Build the `Map` component using `react-leaflet` with **Geoapify Map Tiles** (`https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey={GEOAPIFY_API_KEY}`), centered on the user's PH location. Query **Geoapify Places API** for nearby government facilities (hospitals: `healthcare.hospital`, schools: `education.school`, fire stations: `service.fire_station`, police stations: `service.police`) within a configurable radius (default 5km). Display facilities as categorized markers with custom icons. For each facility, calculate a route via **Geoapify Routing API** (driving + walking). Build `EvacuationPanel` with: (1) facility list grouped by type, showing name, distance, and estimated travel time, (2) disaster-aware recommendations from Gemini (e.g., "For typhoon: evacuate to nearest school" vs "For earthquake: go to open park"), (3) clicking a facility shows its route on the map as a polyline.
 **Testing:** Map renders with Geoapify tiles centered on PH location → markers appear for nearby hospitals, schools, fire stations → clicking a facility draws a route polyline → travel time/distance displayed → recommendations match disaster type.
 
 ### Step 8: Communication Drafting Panel

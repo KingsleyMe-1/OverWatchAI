@@ -1,7 +1,7 @@
-const API_KEY = import.meta.env.VITE_GEOAPIFY_API_KEY
+const API_KEY = import.meta.env.GEOAPIFY_API_KEY
 
 function requireKey() {
-  if (!API_KEY) throw new Error('Missing VITE_GEOAPIFY_API_KEY')
+  if (!API_KEY) throw new Error('Missing GEOAPIFY_API_KEY')
 }
 
 export async function geocodeSearch(text) {

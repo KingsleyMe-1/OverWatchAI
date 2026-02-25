@@ -14,8 +14,8 @@ cp .env.example .env
 Set values in `.env`:
 
 - `VITE_GEMINI_API_KEY`
-- `VITE_GEOAPIFY_API_KEY`
-- `VITE_SCRAPER_URL=http://localhost:3001`
+- `GEOAPIFY_API_KEY`
+- `SCRAPER_URL=http://localhost:3001`
 
 ### 2) Scraping backend
 

@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_GITHUB_TOKEN
+const API_KEY = import.meta.env.GITHUB_TOKEN
 const MODEL = 'gpt-4o-mini'
 const MAX_RETRIES = 5
 const INITIAL_DELAY_MS = 3000
@@ -33,7 +33,7 @@ export async function generateJson(prompt, schemaHint) {
 }
 
 async function _generateJsonInternal(prompt, schemaHint) {
-  if (!API_KEY) throw new Error('Missing VITE_GITHUB_TOKEN')
+  if (!API_KEY) throw new Error('Missing GITHUB_TOKEN')
 
   const endpoint = 'https://models.inference.ai.azure.com/chat/completions'
   const body = {

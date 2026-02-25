@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet'
 
 export default function Map({ location, markers = [], routeCoordinates = [] }) {
-  const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY
+  const apiKey = import.meta.env.GEOAPIFY_API_KEY
   const center = [location.lat, location.lon]
 
   return (

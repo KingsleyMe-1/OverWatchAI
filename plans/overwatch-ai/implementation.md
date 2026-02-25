@@ -84,8 +84,8 @@ npm install react-router-dom react-leaflet leaflet lucide-react
 
 ```env
 VITE_GEMINI_API_KEY=
-VITE_GEOAPIFY_API_KEY=
-VITE_SCRAPER_URL=http://localhost:3001
+GEOAPIFY_API_KEY=
+SCRAPER_URL=http://localhost:3001
 ```
 
 - [x] Copy and paste code below into `.gitignore`:
@@ -246,10 +246,10 @@ export async function getReliefwebReports() {
 - [x] Create `src/api/geoapify.js` and paste:
 
 ```js
-const API_KEY = import.meta.env.VITE_GEOAPIFY_API_KEY
+const API_KEY = import.meta.env.GEOAPIFY_API_KEY
 
 function requireKey() {
-  if (!API_KEY) throw new Error('Missing VITE_GEOAPIFY_API_KEY')
+  if (!API_KEY) throw new Error('Missing GEOAPIFY_API_KEY')
 }
 
 export async function geocodeSearch(text) {
@@ -1276,7 +1276,7 @@ import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet'
 
 export default function Map({ location, markers = [], routeCoordinates = [] }) {
-  const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY
+  const apiKey = import.meta.env.GEOAPIFY_API_KEY
   const center = [location.lat, location.lon]
 
   return (
@@ -1505,8 +1505,8 @@ cp .env.example .env
 Set values in `.env`:
 
 - `VITE_GEMINI_API_KEY`
-- `VITE_GEOAPIFY_API_KEY`
-- `VITE_SCRAPER_URL=http://localhost:3001`
+- `GEOAPIFY_API_KEY`
+- `SCRAPER_URL=http://localhost:3001`
 
 ### 2) Scraping backend
 
