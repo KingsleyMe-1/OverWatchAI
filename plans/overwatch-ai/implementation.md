@@ -363,7 +363,7 @@ export async function generateJson(prompt, schemaHint) {
 ---
 
 #### Step 2: Playwright Scraping Backend (PAGASA & PHIVOLCS)
-- [ ] Initialize backend:
+- [x] Initialize backend:
 
 ```powershell
 Set-Location "c:\Users\Kingsley\OneDrive\Documents\Web_Projects\OverWatchAI"
@@ -374,7 +374,7 @@ npm install express cors playwright
 npx playwright install chromium
 ```
 
-- [ ] Copy and paste code below into `server/package.json`:
+- [x] Copy and paste code below into `server/package.json`:
 
 ```json
 {
@@ -393,7 +393,7 @@ npx playwright install chromium
 }
 ```
 
-- [ ] Create `server/cache.js`:
+- [x] Create `server/cache.js`:
 
 ```js
 const store = new Map()
@@ -413,7 +413,7 @@ export function setCached(key, data, ttlMs = 15 * 60 * 1000) {
 }
 ```
 
-- [ ] Create `server/scrapers/phivolcsEarthquakes.js`:
+- [x] Create `server/scrapers/phivolcsEarthquakes.js`:
 
 ```js
 import { chromium } from 'playwright'
@@ -452,7 +452,7 @@ export async function scrapePhivolcsEarthquakes() {
 }
 ```
 
-- [ ] Create `server/scrapers/phivolcsVolcanoes.js`:
+- [x] Create `server/scrapers/phivolcsVolcanoes.js`:
 
 ```js
 import { chromium } from 'playwright'
@@ -488,7 +488,7 @@ export async function scrapePhivolcsVolcanoes() {
 }
 ```
 
-- [ ] Create `server/scrapers/pagasaWeather.js`:
+- [x] Create `server/scrapers/pagasaWeather.js`:
 
 ```js
 import { chromium } from 'playwright'
@@ -524,7 +524,7 @@ export async function scrapePagasaWeather() {
 }
 ```
 
-- [ ] Create `server/scrapers/pagasaFlood.js`:
+- [x] Create `server/scrapers/pagasaFlood.js`:
 
 ```js
 import { chromium } from 'playwright'
@@ -553,7 +553,7 @@ export async function scrapePagasaFlood() {
 }
 ```
 
-- [ ] Create `server/index.js`:
+- [x] Create `server/index.js`:
 
 ```js
 import cors from 'cors'
@@ -615,7 +615,7 @@ app.listen(port, () => {
 })
 ```
 
-- [ ] Create `src/api/phivolcs.js`:
+- [x] Create `src/api/phivolcs.js`:
 
 ```js
 export async function getPhivolcsEarthquakes() {
@@ -633,7 +633,7 @@ export async function getPhivolcsVolcanoes() {
 }
 ```
 
-- [ ] Create `src/api/pagasa.js`:
+- [x] Create `src/api/pagasa.js`:
 
 ```js
 export async function getPagasaWeather() {
@@ -652,10 +652,10 @@ export async function getPagasaFlood() {
 ```
 
 ##### Step 2 Verification Checklist
-- [ ] `cd server && npm run dev` starts backend on `http://localhost:3001`
-- [ ] `GET /api/scrape/phivolcs/earthquakes` returns `{ ok: true, data: [...] }`
-- [ ] `GET /api/scrape/pagasa/flood` returns `{ ok: true, data: {...} }`
-- [ ] Frontend can call `/api/scrape/*` through Vite proxy without CORS errors
+- [x] `cd server && npm run dev` starts backend on `http://localhost:3001`
+- [x] `GET /api/scrape/phivolcs/earthquakes` returns `{ ok: true, data: [...] }`
+- [x] `GET /api/scrape/pagasa/flood` returns `{ ok: true, data: {...} }`
+- [x] Frontend can call `/api/scrape/*` through Vite proxy without CORS errors
 
 #### Step 2 STOP & COMMIT
 **STOP & COMMIT:** Agent must stop here and wait for the user to test, stage, and commit the change.
